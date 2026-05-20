@@ -1,0 +1,7 @@
+{
+  "failOn": "eol",
+  "lookahead": 90,
+  "searchLocations": [
+    "requirements.txt"
+  ]
+}
