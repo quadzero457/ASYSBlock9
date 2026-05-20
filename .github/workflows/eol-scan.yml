@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: read
-  packages: read
 
 jobs:
   eol-scan:
@@ -18,12 +17,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install pip-audit
+        run: pip install pip-audit
 
-      - name: Run eol-check
-        uses: docker://ghcr.io/mheap/eol-check:latest
+      - name: Run EOL check
+        run: pip-audit -r requirements.txt
